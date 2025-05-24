@@ -1,4 +1,8 @@
+## EXP NO:6
+
 # SR-FLIPFLOP-USING-CASE
+# Name:  DEIVARAJA R
+# Reg no: 212224240031
 
 **AIM:**
 
@@ -10,7 +14,7 @@ Quartus prime
 
 **THEORY**
 
-SR Flip-Flop SR flip-flop operates with only positive clock transitions or negative clock transitions. Whereas, SR latch operates with enable signal. The circuit diagram of SR flip-flop is shown in the following figure. 
+SR Flip-Flop SR flip-flop operates with only positive clock transitions or negative clock transitions. Whereas, SR latch operates with enable signal. The circuit diagram of SR flip-flop is shown in the following figure.
 
 ![image](https://github.com/naavaneetha/SR-FLIPFLOP-USING-CASE/assets/154305477/0f710028-ad52-4d3e-9276-8714cf023a25)
 
@@ -34,38 +38,44 @@ The maximum possible groupings of adjacent ones are already shown in the figure.
 
 **Procedure**
 
-/* write all the steps invloved */
-1.Type the program in Quartus software.
-2.Compile and run the program.
-3.Generate the RTL schematic and save the logic diagram.
-4.Create nodes for inputs and outputs to generate the timing diagram.
-5.For different input combinations generate the timing diagram.
+1 Open Quartus software and create a new project.
+2 Create a new VHDL file and write the code for the SR Flip Flop.
+3 Compile the design by clicking on "Processing" -> "Start Compilation".
+4 Create a testbench file to simulate the design.
+5 Write the testbench code and add stimulus to test the SR Flip Flop.
+6 Run the simulation by clicking on "Processing" -> "Start Simulation".
+7 Observe the waveforms and verify the SR Flip Flop behavior.
+8 Analyze the results and make any necessary changes to the design.
 
 **PROGRAM**
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by:DEIVARAJA R RegisterNumber:212224240031
-*/
-~~~
-module EXP6(S,R,clk,Q,Qbar);
-input S,R,clk;
-output reg Q;
-output reg Qbar;
-initial Q=0;
-initial Qbar=1;
-always @(posedge clk)
+```
+module  ex6(s, r, clk, rst, q);
+  input s, r, clk, rst;
+  output reg q;
+
+  always @(posedge clk or posedge rst)
 begin
-Q=S|((~R)&Q);
-Qbar=~Q;
-end
+    if (rst)
+    q <= 0; // Reset the flip-flop
+    else
+begin
+      case ({s, r}) // S and R control the behavior
+        2'b00: q <= q; // No change
+        2'b01: q <= 0; // Reset
+        2'b10: q <= 1; // Set
+        2'b11: q <= 0; // Invalid state, typically treated as reset
+      endcase
+     end
+  end
 endmodule
-~~~
+```
 **RTL LOGIC FOR FLIPFLOPS**
 
-![Screenshot (103)](https://github.com/user-attachments/assets/00a3e253-8aa9-472c-a12b-e8a34a71406a)
+![Screenshot 2025-05-07 151857](https://github.com/user-attachments/assets/69a53083-c203-4697-bc4e-04b2f40a1634)
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
-
-![Screenshot 2025-04-23 132326](https://github.com/user-attachments/assets/b95f7efd-b2eb-4266-a6c4-c7b3a1ebb85c)
+![Screenshot 2025-05-07 151909](https://github.com/user-attachments/assets/1b22e252-0235-468b-a85f-1103a87d5631)
 
 **RESULTS**
-SR flipflop using verilog and validating their functionality using their functional tables are verified.
+Thus the SR flipflop using verilog and validating their functionality using their functional tables is implemented successfully.
